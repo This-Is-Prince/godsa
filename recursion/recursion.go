@@ -1,0 +1,9 @@
+package recursion
+
+import "fmt"
+
+func Start() {
+	fmt.Println("Recursion in Go!")
+
+	HowRecursionWorks()
+}
