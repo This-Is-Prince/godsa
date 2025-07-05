@@ -5,5 +5,7 @@ import "fmt"
 func Start() {
 	fmt.Println("Recursion in Go!")
 
-	HowRecursionWorks()
+	// HowRecursionWorks()
+	// TreeRecursion()
+	IndirectRecursion()
 }
