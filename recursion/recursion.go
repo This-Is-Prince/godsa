@@ -7,5 +7,7 @@ func Start() {
 
 	// HowRecursionWorks()
 	// TreeRecursion()
-	IndirectRecursion()
+	// IndirectRecursion()
+	// NestedRecursion()
+	SumOfNaturalNumbers()
 }
