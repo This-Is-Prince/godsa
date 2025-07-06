@@ -9,5 +9,8 @@ func Start() {
 	// TreeRecursion()
 	// IndirectRecursion()
 	// NestedRecursion()
-	SumOfNaturalNumbers()
+	// SumOfNaturalNumbers()
+	// Factorial()
+	// Power()
+	TaylorSeries()
 }

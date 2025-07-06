@@ -10,9 +10,21 @@ func sumOfNaturalNumbers(n int) int {
 	}
 }
 
+func iSumOfNaturalNumbers(n int) int {
+	s := 0
+	for i := 1; i <= n; i++ {
+		s += i
+	}
+	return s
+}
+
 func SumOfNaturalNumbers() {
 	fmt.Println("Sum of Natural Numbers in Go!")
 
 	sum := sumOfNaturalNumbers(5)
 	fmt.Printf("Sum of first 5 natural numbers: %d\n", sum)
+
+	// Iterative approach
+	iterativeSum := iSumOfNaturalNumbers(5)
+	fmt.Printf("Iterative sum of first 5 natural numbers: %d\n", iterativeSum)
 }
