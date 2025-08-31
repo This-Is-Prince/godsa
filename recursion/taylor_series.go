@@ -60,7 +60,11 @@ func taylorSeries1(x, n float64) float64 {
 	}
 }
 
-func TaylorSeries() {
+func TaylorSeries(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Taylor Series in Go!")
 
 	result := taylorSeries(2.0, 5.0)

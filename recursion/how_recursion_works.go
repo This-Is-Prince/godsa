@@ -16,7 +16,11 @@ func moveForwardFirstAndPrint(n int) {
 	}
 }
 
-func HowRecursionWorks() {
+func HowRecursionWorks(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("How Recursion Works in Go!")
 	fmt.Println("Print First and Move Forward:")
 	printFirstAndMoveForward(5)

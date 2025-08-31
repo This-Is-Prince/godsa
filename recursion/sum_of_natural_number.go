@@ -18,7 +18,11 @@ func iSumOfNaturalNumbers(n int) int {
 	return s
 }
 
-func SumOfNaturalNumbers() {
+func SumOfNaturalNumbers(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Sum of Natural Numbers in Go!")
 
 	sum := sumOfNaturalNumbers(5)

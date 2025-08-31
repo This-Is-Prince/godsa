@@ -10,7 +10,11 @@ func factorial(n int) int {
 	}
 }
 
-func Factorial() {
+func Factorial(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Factorial in Go!")
 
 	fact := factorial(5)

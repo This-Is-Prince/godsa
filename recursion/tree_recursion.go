@@ -10,7 +10,11 @@ func treeRecursion(n int) {
 	}
 }
 
-func TreeRecursion() {
+func TreeRecursion(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("How Tree Recursion Works in Go!")
 
 	treeRecursion(3)

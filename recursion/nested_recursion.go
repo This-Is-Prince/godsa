@@ -10,7 +10,11 @@ func nestedRecursion(n int) int {
 	}
 }
 
-func NestedRecursion() {
+func NestedRecursion(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Nested Recursion in Go!")
 	result := nestedRecursion(95)
 	fmt.Printf("Result of nested recursion: %d\n", result)

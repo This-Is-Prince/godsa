@@ -9,5 +9,5 @@ import (
 func main() {
 	fmt.Println("Data Structures and Algorithms in Go!")
 
-	recursion.Start()
+	recursion.Start(false)
 }

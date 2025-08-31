@@ -2,15 +2,19 @@ package recursion
 
 import "fmt"
 
-func Start() {
+func Start(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Recursion in Go!")
 
-	// HowRecursionWorks()
-	// TreeRecursion()
-	// IndirectRecursion()
-	// NestedRecursion()
-	// SumOfNaturalNumbers()
-	// Factorial()
-	// Power()
-	TaylorSeries()
+	HowRecursionWorks(false)
+	TreeRecursion(false)
+	IndirectRecursion(false)
+	NestedRecursion(false)
+	SumOfNaturalNumbers(false)
+	Factorial(false)
+	Power(false)
+	TaylorSeries(false)
 }

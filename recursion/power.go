@@ -12,7 +12,11 @@ func power(m int, n int) int {
 	}
 }
 
-func Power() {
+func Power(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Power in Go!")
 
 	result := power(5, 3)

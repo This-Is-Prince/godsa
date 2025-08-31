@@ -16,7 +16,11 @@ func b(n int) {
 	}
 }
 
-func IndirectRecursion() {
+func IndirectRecursion(run bool) {
+	if !run {
+		return
+	}
+
 	fmt.Println("Indirect Recursion in Go!")
 	a(3)
 }
