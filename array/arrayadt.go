@@ -495,6 +495,157 @@ func (a *ArrayADT) Difference(b *ArrayADT) *ArrayADT {
 	return u
 }
 
+func (a *ArrayADT) FindingSingleMissingElementInSortedArray() (int64, bool) {
+	if !a.IsSorted() || a.Length() < 2 {
+		return 0, false
+	}
+
+	var i uint = 0
+	var curr, next int64
+
+	for i < a.Length()-1 {
+		curr = a.A[i]
+		next = a.A[i+1]
+
+		if curr != next && curr+1 != next {
+			return curr + 1, true
+		}
+
+		i++
+	}
+
+	return 0, false
+}
+
+func (a *ArrayADT) FindingMultipleMissingElementInSortedArray() (n *ArrayADT) {
+	if !a.IsSorted() || a.Length() < 2 {
+		return
+	}
+
+	var i uint = 0
+	var curr, next int64
+
+	for i < a.Length()-1 {
+		curr = a.A[i]
+		next = a.A[i+1]
+
+		if curr != next && curr+1 != next {
+			curr++
+			for curr < next {
+				if n == nil {
+					n = CreateArray(a.Length())
+				}
+
+				n.Append(curr)
+				curr++
+			}
+		}
+
+		i++
+	}
+
+	return
+}
+
+func (a *ArrayADT) FindingDuplicatesElementsInSortedArray() (n *ArrayADT) {
+	if !a.IsSorted() || a.Length() < 2 {
+		return
+	}
+
+	var i uint = 0
+	var curr, next, lastDuplicate int64
+
+	lastDuplicate = a.A[i] - 1
+
+	for i < a.Length()-1 {
+		curr = a.A[i]
+		next = a.A[i+1]
+
+		if curr == next {
+			if curr != lastDuplicate {
+				if n == nil {
+					n = CreateArray(a.Length())
+				}
+
+				n.Append(curr)
+				lastDuplicate = curr
+			}
+		}
+
+		i++
+	}
+
+	return
+}
+
+func (a *ArrayADT) FindingDuplicatesElementsInUnsortedArray() (n *ArrayADT) {
+	if a.Length() < 2 {
+		return
+	}
+
+	for i, v := range a.A {
+		j := i + 1
+		count := 0
+
+		for j < int(a.Length()) {
+			if v == a.A[j] && count == 0 {
+				if n == nil {
+					n = CreateArray(a.Size())
+				}
+				n.Append(v)
+				count++
+			}
+			j++
+		}
+	}
+
+	return
+}
+
+func (a *ArrayADT) FindingPairOfElementsWithSumKInSortedArray(k int64) (n *ArrayADT) {
+	if a.Length() < 2 {
+		return
+	}
+
+	var i, j uint = 0, a.Length() - 1
+
+	for i < j {
+		sum := a.A[i] + a.A[j]
+		if sum == k {
+			n = CreateArray(a.Length())
+			n.Append(a.A[i], a.A[j])
+			i++
+			j--
+		} else if sum < k {
+			i++
+		} else {
+			j--
+		}
+	}
+
+	return
+}
+
+func (a *ArrayADT) FindingPairOfElementsWithSumKInUnSortedArray(k int64) (n *ArrayADT) {
+	if a.Length() < 2 {
+		return
+	}
+
+	for i := range a.A {
+		j := i + 1
+		for j < int(a.Length()) {
+			if a.A[i]+a.A[j] == k {
+				n = CreateArray(2)
+				n.Append(a.A[i], a.A[j])
+				break
+			}
+			j++
+		}
+	}
+
+	return
+}
+
 func RunArrayADT(run bool) {
 	if !run {
 		return
