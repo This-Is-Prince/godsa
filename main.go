@@ -5,11 +5,13 @@ import (
 
 	"github.com/This-Is-Prince/godsa/array"
 	"github.com/This-Is-Prince/godsa/recursion"
+	"github.com/This-Is-Prince/godsa/stringadt"
 )
 
 func main() {
 	fmt.Println("Data Structures and Algorithms in Go!")
 
 	recursion.Start(false)
-	array.Start(true)
+	array.Start(false)
+	stringadt.Start(true)
 }
