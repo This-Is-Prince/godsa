@@ -4,11 +4,13 @@ A collection of classic data structures and algorithms implemented in Go, organi
 
 This repository is intended as a learning resource and playground for implementing and exploring algorithms and data structures using idiomatic Go.
 
+
 ## Highlights
 
 - Focused examples implemented in plain Go (no external dependencies).
 - Easy-to-run examples from the repository root using `go run` or `go build`.
-- Clear, tiny packages per topic (currently: `array`, `recursion`).
+- Clear, tiny packages per topic (currently: `array`, `recursion`, `stringadt`).
+
 
 ## Repository layout
 
@@ -18,6 +20,8 @@ This repository is intended as a learning resource and playground for implementi
 	- `array.go`, `declarations.go`, `arrayadt.go`, `2darray.go`
 - `recursion/` — recursion examples and related demonstrations.
 	- `recursion.go`, `factorial.go`, `power.go`, `sum_of_natural_number.go`, etc.
+- `stringadt/` — string ADT (Abstract Data Type) examples and string manipulation demonstrations.
+	- `stringadt.go`
 
 See the source files for specific function names and short comments.
 
