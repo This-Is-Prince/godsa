@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/This-Is-Prince/godsa/array"
+	"github.com/This-Is-Prince/godsa/linkedlist"
 	"github.com/This-Is-Prince/godsa/recursion"
 	"github.com/This-Is-Prince/godsa/stringadt"
 )
@@ -13,5 +14,6 @@ func main() {
 
 	recursion.Start(false)
 	array.Start(false)
-	stringadt.Start(true)
+	stringadt.Start(false)
+	linkedlist.Start(true)
 }
