@@ -90,6 +90,36 @@ func (bt *BinaryTree) PostOrderTraversal() {
 	fmt.Println()
 }
 
+func (bt *BinaryTree) LevelOrderTraversal() {
+	if bt.root == nil {
+		return
+	}
+
+	fmt.Println("LevelOrderTraversal!")
+
+	queue := &Queue{}
+
+	node := bt.root
+	queue.Enqueue(node)
+
+	for !queue.IsEmpty() {
+		node = queue.Dequeue()
+		if node == nil {
+			break
+		}
+
+		fmt.Printf("%d, ", node.value)
+		if node.left != nil {
+			queue.Enqueue(node.left)
+		}
+		if node.right != nil {
+			queue.Enqueue(node.right)
+		}
+	}
+
+	fmt.Println()
+}
+
 /*
 						[2]
 
@@ -171,25 +201,19 @@ func (bt *BinaryTree) GenerateTreeFromArrayUsingQueue(treeArray []any) {
 		}
 
 		if idx < len(treeArray) {
-			if leftChildValue := treeArray[idx]; leftChildValue != nil {
-				_leftChildValue, ok := leftChildValue.(int)
-				if ok {
-					node := NewNode(_leftChildValue)
-					parentNode.left = node
-					queue.Enqueue(node)
-				}
+			if _leftChildValue, ok := treeArray[idx].(int); ok {
+				node := NewNode(_leftChildValue)
+				parentNode.left = node
+				queue.Enqueue(node)
 			}
 			idx++
 		}
 
 		if idx < len(treeArray) {
-			if rightChildValue := treeArray[idx]; rightChildValue != nil {
-				_rightChildValue, ok := rightChildValue.(int)
-				if ok {
-					node := NewNode(_rightChildValue)
-					parentNode.right = node
-					queue.Enqueue(node)
-				}
+			if _rightChildValue, ok := treeArray[idx].(int); ok {
+				node := NewNode(_rightChildValue)
+				parentNode.right = node
+				queue.Enqueue(node)
 			}
 			idx++
 		}
@@ -207,6 +231,7 @@ func RunTreesADT(run bool) {
 	bt1.GenerateTreeFromArrayUsingQueue(treeArray1)
 	bt1.PreOrderTraversal()
 	bt1.InOrderTraversal()
+	bt1.LevelOrderTraversal()
 
 	bt2 := NewBinaryTree()
 	treeArray2 := []any{5, 8, 6, nil, 9, 3, nil, nil, nil, 4, 2}
@@ -214,4 +239,5 @@ func RunTreesADT(run bool) {
 	bt2.GenerateTreeFromArrayUsingQueue(treeArray2)
 	bt2.PreOrderTraversal()
 	bt2.InOrderTraversal()
+	bt2.LevelOrderTraversal()
 }
