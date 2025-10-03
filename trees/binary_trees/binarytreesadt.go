@@ -50,6 +50,61 @@ func (bt *BinaryTree) PreOrderTraversal() {
 	fmt.Println()
 }
 
+func (bt *BinaryTree) IterativePreOrderTraversal() {
+	if bt.root == nil {
+		return
+	}
+
+	fmt.Println("IterativePreOrderTraversal!")
+
+	stack := &Stack{}
+
+	node := bt.root
+	stack.Push(node)
+
+	for !stack.IsEmpty() {
+		node = stack.Pop()
+		if node == nil {
+			break
+		}
+
+		fmt.Printf("%d, ", node.value)
+		if node.right != nil {
+			stack.Push(node.right)
+		}
+		if node.left != nil {
+			stack.Push(node.left)
+		}
+	}
+
+	fmt.Println()
+}
+
+func (bt *BinaryTree) IterativePreOrderTraversal2() {
+	if bt.root == nil {
+		return
+	}
+
+	fmt.Println("IterativePreOrderTraversal! 2")
+
+	stack := &Stack{}
+
+	node := bt.root
+
+	for node != nil || !stack.IsEmpty() {
+		if node != nil {
+			fmt.Printf("%d, ", node.value)
+			stack.Push(node)
+			node = node.left
+		} else {
+			node = stack.Pop()
+			node = node.right
+		}
+	}
+
+	fmt.Println()
+}
+
 func (bt *BinaryTree) inOrderTraversal(node *Node) {
 	if node == nil {
 		return
@@ -67,6 +122,31 @@ func (bt *BinaryTree) InOrderTraversal() {
 
 	fmt.Println("InOrderTraversal!")
 	bt.inOrderTraversal(bt.root)
+	fmt.Println()
+}
+
+func (bt *BinaryTree) IterativeInOrderTraversal() {
+	if bt.root == nil {
+		return
+	}
+
+	fmt.Println("IterativeInOrderTraversal!")
+
+	stack := &Stack{}
+
+	node := bt.root
+
+	for node != nil || !stack.IsEmpty() {
+		if node != nil {
+			stack.Push(node)
+			node = node.left
+		} else {
+			node = stack.Pop()
+			fmt.Printf("%d, ", node.value)
+			node = node.right
+		}
+	}
+
 	fmt.Println()
 }
 
@@ -230,6 +310,7 @@ func RunTreesADT(run bool) {
 	// bt1.GenerateTreeFromArray(treeArray1)
 	bt1.GenerateTreeFromArrayUsingQueue(treeArray1)
 	bt1.PreOrderTraversal()
+	bt1.IterativePreOrderTraversal()
 	bt1.InOrderTraversal()
 	bt1.LevelOrderTraversal()
 
@@ -238,6 +319,7 @@ func RunTreesADT(run bool) {
 	// bt2.GenerateTreeFromArray(treeArray2)
 	bt2.GenerateTreeFromArrayUsingQueue(treeArray2)
 	bt2.PreOrderTraversal()
+	bt2.IterativePreOrderTraversal()
 	bt2.InOrderTraversal()
 	bt2.LevelOrderTraversal()
 }
