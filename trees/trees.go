@@ -3,6 +3,7 @@ package trees
 import (
 	"fmt"
 
+	binarysearchtrees "github.com/This-Is-Prince/godsa/trees/binary_search_trees"
 	binarytrees "github.com/This-Is-Prince/godsa/trees/binary_trees"
 )
 
@@ -12,5 +13,6 @@ func Start(run bool) {
 	}
 
 	fmt.Println("Trees in Go!")
-	binarytrees.RunTreesADT(true)
+	binarytrees.RunBinaryTreesADT(true)
+	binarysearchtrees.RunBinarySearchTrees(false)
 }

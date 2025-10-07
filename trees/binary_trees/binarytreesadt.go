@@ -1,6 +1,9 @@
 package binarytrees
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Node struct {
 	left  *Node
@@ -200,6 +203,57 @@ func (bt *BinaryTree) LevelOrderTraversal() {
 	fmt.Println()
 }
 
+func (bt *BinaryTree) height(node *Node) int {
+	if node == nil {
+		return 0
+	}
+
+	lh := bt.height(node.left)
+	rh := bt.height(node.right)
+
+	return int(math.Max(float64(lh), float64(rh))) + 1
+}
+
+func (bt *BinaryTree) Height() int {
+	return bt.height(bt.root)
+}
+
+func (bt *BinaryTree) count(node *Node) int {
+	if node == nil {
+		return 0
+	}
+
+	lc := bt.count(node.left)
+	rc := bt.count(node.right)
+
+	return lc + rc + 1
+}
+
+func (bt *BinaryTree) Count() int {
+	return bt.count(bt.root)
+}
+
+func (bt *BinaryTree) leafNodeCount(node *Node) int {
+	if node == nil {
+		return 0
+	}
+
+	lLNC := bt.leafNodeCount(node.left)
+	rLNC := bt.leafNodeCount(node.right)
+
+	total := lLNC + rLNC
+
+	if node.left == nil && node.right == nil {
+		total++
+	}
+
+	return total
+}
+
+func (bt *BinaryTree) LeafNodeCount() int {
+	return bt.leafNodeCount(bt.root)
+}
+
 /*
 						[2]
 
@@ -300,7 +354,41 @@ func (bt *BinaryTree) GenerateTreeFromArrayUsingQueue(treeArray []any) {
 	}
 }
 
-func RunTreesADT(run bool) {
+func (bt *BinaryTree) generateTreeFromPreOrder(preOrder []int, preOrderIdx *int, inOrderLeft, inOrderRight int, inOrderMap map[int]int) *Node {
+	if inOrderLeft > inOrderRight {
+		return nil
+	}
+
+	rootVal := preOrder[*preOrderIdx]
+	*preOrderIdx++
+
+	node := NewNode(rootVal)
+
+	inOrderRootIdx := inOrderMap[rootVal]
+
+	node.left = bt.generateTreeFromPreOrder(preOrder, preOrderIdx, inOrderLeft, inOrderRootIdx-1, inOrderMap)
+
+	node.right = bt.generateTreeFromPreOrder(preOrder, preOrderIdx, inOrderRootIdx+1, inOrderRight, inOrderMap)
+
+	return node
+}
+
+func (bt *BinaryTree) GenerateTreeFromPreOrder(preOrder, inOrder []int) {
+	if len(preOrder) == 0 || len(preOrder) != len(inOrder) {
+		bt.root = nil
+		return
+	}
+
+	inOrderMap := make(map[int]int, len(inOrder))
+	for i, val := range inOrder {
+		inOrderMap[val] = i
+	}
+
+	preOrderIdx := 0
+	bt.root = bt.generateTreeFromPreOrder(preOrder, &preOrderIdx, 0, len(inOrder)-1, inOrderMap)
+}
+
+func RunBinaryTreesADT(run bool) {
 	if !run {
 		return
 	}
@@ -309,17 +397,31 @@ func RunTreesADT(run bool) {
 	treeArray1 := []any{2, 4, 6, 8, 3, 9, 5}
 	// bt1.GenerateTreeFromArray(treeArray1)
 	bt1.GenerateTreeFromArrayUsingQueue(treeArray1)
+	bt1.PostOrderTraversal()
 	bt1.PreOrderTraversal()
-	bt1.IterativePreOrderTraversal()
+	// bt1.IterativePreOrderTraversal()
 	bt1.InOrderTraversal()
 	bt1.LevelOrderTraversal()
 
-	bt2 := NewBinaryTree()
-	treeArray2 := []any{5, 8, 6, nil, 9, 3, nil, nil, nil, 4, 2}
-	// bt2.GenerateTreeFromArray(treeArray2)
-	bt2.GenerateTreeFromArrayUsingQueue(treeArray2)
-	bt2.PreOrderTraversal()
-	bt2.IterativePreOrderTraversal()
-	bt2.InOrderTraversal()
-	bt2.LevelOrderTraversal()
+	// bt2 := NewBinaryTree()
+	// treeArray2 := []any{5, 8, 6, nil, 9, 3, nil, nil, nil, 4, 2}
+	// // bt2.GenerateTreeFromArray(treeArray2)
+	// bt2.GenerateTreeFromArrayUsingQueue(treeArray2)
+	// bt2.PreOrderTraversal()
+	// bt2.IterativePreOrderTraversal()
+	// bt2.InOrderTraversal()
+	// bt2.LevelOrderTraversal()
+
+	fmt.Println()
+
+	bt3 := NewBinaryTree()
+	preOrder := []int{2, 4, 8, 3, 6, 9, 5}
+	inOrder := []int{8, 4, 3, 2, 9, 6, 5}
+	bt3.GenerateTreeFromPreOrder(preOrder, inOrder)
+	bt3.PostOrderTraversal()
+	bt3.PreOrderTraversal()
+	bt3.InOrderTraversal()
+	bt3.LevelOrderTraversal()
+
+	fmt.Println()
 }
